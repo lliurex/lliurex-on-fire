@@ -1,0 +1,24 @@
+{
+
+  "manifest_version": 2,
+  "name": "LliurexOnFire",
+  "version": "0.1.0.7",
+
+  "description": "Add custom settings for LliureX",
+
+  "icons": {
+    "16": "icons/lliurex_on_fire16.png",
+    "48": "icons/lliurex_on_fire48.png",
+    "64": "icons/lliurex_on_fire64.png",
+    "128": "icons/lliurex_on_fire128.png"
+  },
+
+  "permissions": [
+    "bookmarks"
+  ],
+
+  "background": 
+    {
+      "scripts": ["lliurex_on_fire.js"]
+    }
+}
