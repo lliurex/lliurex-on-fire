@@ -1,0 +1,19 @@
+Source: lliurex-on-fire
+Section: web
+Priority: optional
+Maintainer: Equipo LliureX <lliurex@gva.es>
+Uploaders: M.Angel Juan <m.angel.juan@gmail.com>, Raul Rodrigo Segura <lliurex_devel3@edu.gva.es>, Hector Garcia Huerta <lliurex_devel1@edu.gva.es>, Daniel Duran Vecino <daduve@gmail.com>, Juanma Navarro <juanma1980@gmail.com>, Juan Ramon Pelegrina <juapesai@hotmail.com>
+Build-Depends: debhelper (>= 7.0)
+Standards-Version: 3.9.5
+Homepage: http://lliurex.net
+
+Package: lliurex-on-fire
+Architecture: all
+Depends: ${misc:Depends}, firefox
+Description: Lliurex add-on for firefox
+
+Package: lliurex-on-chrome
+Architecture: all
+Depends: ${misc:Depends}, chromium-browser|google-chrome
+Description: Lliurex add-on for chromium
+
