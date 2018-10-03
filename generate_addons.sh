@@ -81,6 +81,7 @@ rm -fr $BUILD_DIR 2>/dev/null
 #rm -fr $CHROMIUM_DIR/*crx 2>/dev/null
 #rm -fr $FIREFOX_DIR/*xpi 2>/dev/null
 NODE_VERSION=$(nodejs -v)
+echo "Using node: $NODE_VERSION"
 if [ ${NODE_VERSION:1:1} -lt $NODE_MIN_VERSION ]
 then
 	echo "At least version $NODE_MIN_VERSION.x is needed for nodejs. Your current version is $NODE_VERSION"
