@@ -12,5 +12,5 @@
 %:
 	dh $@ 
 
-override_dh_auto_build:	
-	bash ./generate_addons.sh
+#override_dh_auto_build:	
+#	bash ./generate_addons.sh
