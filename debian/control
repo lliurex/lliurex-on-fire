@@ -3,7 +3,7 @@ Section: web
 Priority: optional
 Maintainer: Equipo LliureX <lliurex@gva.es>
 Uploaders: M.Angel Juan <m.angel.juan@gmail.com>, Raul Rodrigo Segura <lliurex_devel3@edu.gva.es>, Hector Garcia Huerta <lliurex_devel1@edu.gva.es>, Daniel Duran Vecino <daduve@gmail.com>, Juanma Navarro <juanma1980@gmail.com>, Juan Ramon Pelegrina <juapesai@hotmail.com>
-Build-Depends: debhelper (>= 7.0)
+Build-Depends: debhelper (>= 7.0),nodejs(>=6.0)
 Standards-Version: 3.9.5
 Homepage: http://lliurex.net
 
