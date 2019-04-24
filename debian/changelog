@@ -1,3 +1,9 @@
+lliurex-on-fire (0.3) bionic; urgency=medium
+
+  * Add forum search
+
+ -- Juanma Navarro Mañez <juanma1980@gmail.com>  Wed, 24 Apr 2019 14:04:07 +0200
+
 lliurex-on-fire (0.2.1) bionic; urgency=medium
 
   * Bionic release
