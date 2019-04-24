@@ -16,7 +16,13 @@
   "permissions": [
     "bookmarks"
   ],
-
+  "chrome_settings_overrides": {
+    "search_provider": {
+    "name": "LliureX Forum",
+	"search_url":"http://mestreacasa.gva.es/web/lliurex/forums?p_p_id=19&p_p_action=0&p_p_state=maximized&p_p_mode=view&_19_struts_action=%2Fmessage_boards%2Fsearch&_19_redirect=%2Fweb%2Flliurex%2Fforums%2Fmessage_boards%2Fcategory%2F500003310420&_19_breadcrumbsCategoryId=500003310420&_19_searchCategoryId=500003310420&_19_tabs1TabsScroll=&_19_keywords={searchTerms}",
+    "is_default": false
+   }
+  },
   "background": 
     {
       "scripts": ["lliurex_on_fire.js"]
