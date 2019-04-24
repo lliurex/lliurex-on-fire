@@ -96,4 +96,3 @@ var search='';
 var query={'title':bm_folder_name};
 console.log("Lliurex-on-fire: Init");
 search=chrome.bookmarks.search(query,processBookmarks);
-
