@@ -9,11 +9,17 @@ var extra_bm_url={'http://mestreacasa.gva.es/web/guest/inicio':'Mestre a casa'};
 var extra_bm_url_arr=Object.keys(extra_bm_url);
 var bm_treeNode=''
 var max_tries=6
+/* Search providers for firexos must be on https. The lliurex forum is on http so we need to redirect the "fake" search provider to the "real" url */
+var lliurexUrl="https://mestreacasa.gva.es/web/lliurex/*";
 
-function actionLog(e)
+function redirect(requestDetails)
 {
-	console.log("Lliurex-on-fire: "+e);
+	console.log("Redirect: "+requestDetails.url);
+	return {
+		redirectUrl:requestDetails.url.replace("https","http")
+		};
 }
+//function redirect
 
 function createBookmark(bm_item_tree,name,url,folder_id)
 {
@@ -23,6 +29,7 @@ function createBookmark(bm_item_tree,name,url,folder_id)
 		var bm=chrome.bookmarks.create(bm_data);
 	}
 }
+//function createBookmark
 
 function checkBookmarks(bm_item)
 {
@@ -47,6 +54,7 @@ function checkBookmarks(bm_item)
 	var query={'title':bm_folder_name};
 	search=chrome.bookmarks.search(query,reload);
 }
+//function checkBookmarks
 
 function reload(bm_folder)
 {
@@ -59,6 +67,7 @@ function reload(bm_folder)
 		}
 	}
 }
+//function reload
 
 function createBookmarksFolder(title)
 {
@@ -78,6 +87,7 @@ function createBookmarksFolder(title)
 		bm_folder=chrome.bookmarks.create(query,function(newFolder){checkBookmarks(newFolder)})
 		});
 }
+//function createBookmarksFolder
 
 function processBookmarks(bm_folder)
 {
@@ -91,6 +101,14 @@ function processBookmarks(bm_folder)
 	}
 
 }
+//function processBookmarks
+
+chrome.webRequest.onBeforeRequest.addListener(
+	redirect,
+	{urls: [lliurexUrl]},
+	["blocking"]
+);
+//chrome.webRequest.onBeforeRequest.addListener
 
 var search='';
 var query={'title':bm_folder_name};
