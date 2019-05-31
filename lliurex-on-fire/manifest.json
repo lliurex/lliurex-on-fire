@@ -13,6 +13,10 @@
   },
 
   "permissions": [
+	"dns",
+	"tabs",
+	"webNavigation",
+	"bookmarks",
 	"webRequest",
 	"webRequestBlocking",
 	"https://mestreacasa.gva.es/"
