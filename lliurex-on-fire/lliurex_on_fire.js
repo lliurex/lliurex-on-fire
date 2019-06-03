@@ -103,13 +103,36 @@ function processBookmarks(bm_folder)
 }
 //function processBookmarks
 
+function resolved(record)
+{
+	console.log(record.addresses);
+}
+
+function not_resolved(record)
+{
+	updating=browser.tabs.update(id,{
+			active:true,
+			url: "page/index.html"
+	});
+}
+function loadErrorOcurred(details)
+{
+//	console.log(details);
+	id=details.tabId;
+	let resolving=browser.dns.resolve(details.url);
+	resolving.then(resolved,not_resolved)
+}
+
 chrome.webRequest.onBeforeRequest.addListener(
 	redirect,
 	{urls: [lliurexUrl]},
 	["blocking"]
 );
-//chrome.webRequest.onBeforeRequest.addListener
-
+		
+chrome.webNavigation.onErrorOccurred.addListener(
+		loadErrorOcurred
+	);
+var id=0;
 var search='';
 var query={'title':bm_folder_name};
 console.log("Lliurex-on-fire: Init");
