@@ -1,6 +1,12 @@
+lliurex-on-fire (0.3.2) bionic; urgency=medium
+
+  * Add 404 custom page 
+
+ -- Juanma Navarro Mañez <juanma1980@gmail.com>  Tue, 04 Jun 2019 16:54:01 +0200
+
 lliurex-on-fire (0.3.1) bionic; urgency=medium
 
-  * Update kwyword for forum search
+  * Update keyword for forum search
 
  -- Juanma Navarro Mañez <juanma1980@gmail.com>  Wed, 24 Apr 2019 14:27:52 +0200
 
