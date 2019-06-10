@@ -1,3 +1,9 @@
+lliurex-on-fire (0.3.3) bionic; urgency=medium
+
+  * Fix network error when loading special urls
+
+ -- Juanma Navarro Mañez <juanma1980@gmail.com>  Mon, 10 Jun 2019 12:28:03 +0200
+
 lliurex-on-fire (0.3.2) bionic; urgency=medium
 
   * Add 404 custom page 
