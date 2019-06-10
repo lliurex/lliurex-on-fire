@@ -106,6 +106,11 @@ function processBookmarks(bm_folder)
 
 function resolved(record)
 {
+	console.log("Fetch error");
+	if (record.status==200)
+	{
+		return;
+	}
 	console.log(record);
 	updating=chrome.tabs.update(id,{
 			active:true,
@@ -127,9 +132,14 @@ function not_resolved(record)
 
 function loadErrorOcurred(details)
 {
-//	console.log(details);
+	console.log(details);
+	if ((details.url).startsWith("about"))
+	{
+		return;
+	}
+	console.log("Valid: "+details.url);
 	id=details.tabId;
-	fetch(details.url).then(resolved,not_resolved)
+	fetch(details.url).then(resolved,not_resolved);
 }
 //function loadErrorOcurred
 
