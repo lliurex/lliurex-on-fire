@@ -139,7 +139,11 @@ function loadErrorOcurred(details)
 	}
 	console.log("Valid: "+details.url);
 	id=details.tabId;
-	fetch(details.url).then(resolved,not_resolved);
+	frameId=details.frameId;
+	if (frameId==0)
+	{
+		fetch(details.url).then(resolved,not_resolved);
+	}
 }
 //function loadErrorOcurred
 
