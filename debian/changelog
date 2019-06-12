@@ -1,3 +1,9 @@
+lliurex-on-fire (0.3.4) bionic; urgency=medium
+
+  * Verify that network error is not launched by an iframe
+
+ -- Juanma Navarro Mañez <juanma1980@gmail.com>  Wed, 12 Jun 2019 12:54:59 +0200
+
 lliurex-on-fire (0.3.2) bionic; urgency=medium
 
   * Add 404 custom page 
