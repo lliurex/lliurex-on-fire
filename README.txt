@@ -6,7 +6,9 @@ This plugin needs the username and private key from the mozilla developer networ
 First Stage)
 	Copy the build directory to /tmp and cd into it
 	Fill the file passfile with the username and private key
-	Build the plugins invoking sudo ./generate_addons.sh
+	Install web-ext:
+		sudo npm install --global web-ext
+	Build the plugins invoking ./generate_addons.sh
 Second stage)
 	Return to orig folder
 	Copy the tmp generated plugins (inside chromium-plugin and firefox-plugin) to its respective folders
