@@ -41,19 +41,22 @@ function redirect(requestDetails)
 
 function checkBookmarks(bm_item)
 {
-	var bm_folder_id=bm_item.id;
-	var bm_folder=bm_item.title;
+	let bm_folder_id=bm_item.id;
+	let bm_folder=bm_item.title;
 	console.log(bm_item)
 	console.log("Lliurex-on-fire: check bm" + bm_folder);
-	var folder_dict=bm_dict[bm_folder];
+	let folder_dict=bm_dict[bm_folder];
 	for (let [bm_url,bm_name] of Object.entries(folder_dict)){
 		console.log("Lliurex-on-fire: check url " + bm_url);
 		console.log("Lliurex-on-fire: name " + bm_name);
-		chrome.bookmarks.search({'url':bm_url},function helper(bmTree){
+		chrome.bookmarks.search({'title':bm_name},function helper(bmTree){
 			if (bmTree[0]==null){
 				bm_data={'title':bm_name,'url':bm_url,'parentId':bm_folder_id,'index':0};
 				console.log('create '+bm_data['title']);
 				chrome.bookmarks.create(bm_data);
+			}else{
+				console.log("Found");
+				console.log(bmTree);
 			}
 		});
 	}
@@ -106,43 +109,58 @@ function processBookmarks(bm_folder)
 
 function resolved(record)
 {
-	console.log("Fetch error");
-	if (record.status==200)
-	{
-		return;
-	}
+	console.log("Fetch ok");
+	let ip=record.addresses[0];
 	console.log(record);
-	updating=chrome.tabs.update(id,{
+	record=null;
+	if (ip=="169.254.254.254")
+	{
+		updating=chrome.tabs.update(id,{
 			active:true,
-			url: "page/index.html?err="+record.status+"&text="+record.statusText
+			url: "page/index.html?text="+tabUrl
 	});
+
+	}
 }
 //function resolved
 
 function not_resolved(record)
 {
+	return;
 	console.log(record);
-	console.log("***");
 	updating=chrome.tabs.update(id,{
 			active:true,
 			url: "page/index.html?err=404&text=page could not be loaded"
 	});
+	console.log("Delete "+tabUrl);
+	browser.history.deleteUrl({'url':tabUrl});
 }
 //function not_resolved
 
 function loadErrorOcurred(details)
 {
-	console.log(details);
-	if ((details.url).startsWith("about"))
-	{
-		return;
-	}
-	console.log("Valid: "+details.url);
+	//Disabled. Remove "return" to enable
+//	return;
 	id=details.tabId;
+	tabUrl=details.url;
 	frameId=details.frameId;
-	if (frameId==0)
+	let domain=new URL(details.url).hostname;
+	if((typeof(browser.dns=="object")) && (frameId==0))
 	{
-		fetch(details.url).then(resolved,not_resolved);
+		console.log(details);
+		try
+		{
+			console.log("Domain: "+domain);
+			browser.dns.resolve(domain,["bypass_cache"]).then(resolved);
+		}catch{
+			not_resolved(details.url);
+		};
+	}else{
+		console.log("Fetching: "+details.url);
+		if (frameId==0)
+		{
+			fetch(domain).then(resolved);
+		}
 	}
 }
 //function loadErrorOcurred
