@@ -41,26 +41,25 @@ function redirect(requestDetails)
 
 function checkBookmarks(bm_item)
 {
-	let bm_folder_id=bm_item.id;
-	let bm_folder=bm_item.title;
-	console.log(bm_item)
-	console.log("Lliurex-on-fire: check bm" + bm_folder);
-	let folder_dict=bm_dict[bm_folder];
+	let bm=bm_item;
+	console.log("Lliurex-on-fire: check bm " + bm.id);
+	let folder_dict=bm_dict[bm.title];
 	for (let [bm_url,bm_name] of Object.entries(folder_dict)){
 		console.log("Lliurex-on-fire: check url " + bm_url);
 		console.log("Lliurex-on-fire: name " + bm_name);
-		chrome.bookmarks.search({'title':bm_name},function helper(bmTree){
+		chrome.bookmarks.search({'title':bm_name,'url':bm_url},function helper(bmTree){
 			if (bmTree[0]==null){
-				bm_data={'title':bm_name,'url':bm_url,'parentId':bm_folder_id,'index':0};
+				bm_data={'title':bm_name,'url':bm_url,'parentId':bm.id,'index':0};
 				console.log('create '+bm_data['title']);
 				chrome.bookmarks.create(bm_data);
 			}else{
 				console.log("Found");
 				console.log(bmTree);
+				console.log(bm_item);
 			}
 		});
 	}
-	var query={'title':bm_folder};
+	var query={'title':bm.title};
 	chrome.bookmarks.search(query,reload);
 }
 //function checkBookmarks
@@ -98,9 +97,9 @@ function createBookmarksFolder(title)
 
 function processBookmarks(bm_folder)
 {
-	console.log("Processing "+bm_folder)
 	if (bm_folder[0])
 	{
+		console.log("Processing "+bm_folder[0])
 		checkBookmarks(bm_folder[0]);
 	} 
 
@@ -127,13 +126,13 @@ function resolved(record)
 function not_resolved(record)
 {
 	return;
-	console.log(record);
+/*	console.log(record);
 	updating=chrome.tabs.update(id,{
 			active:true,
 			url: "page/index.html?err=404&text=page could not be loaded"
 	});
 	console.log("Delete "+tabUrl);
-	browser.history.deleteUrl({'url':tabUrl});
+	browser.history.deleteUrl({'url':tabUrl});*/
 }
 //function not_resolved
 
@@ -193,7 +192,7 @@ function exploreTree(bookmarkItems)
 		if (bm_tree.includes(name))
 		{
 			var query={'title':name};
-			search=chrome.bookmarks.search(query,processBookmarks);
+			chrome.bookmarks.search(query,processBookmarks);
 		}else{
 			createBookmarksFolder(name);
 		}
