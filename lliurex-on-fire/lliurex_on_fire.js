@@ -2,7 +2,7 @@
  * Extension that adds Lliurex mods to Firefox/Chromium
  */
 
-var lliurex_bm_url={'http://wiki.lliurex.net/Inicio':'Wiki de LliureX','http://mestreacasa.gva.es/web/lliurex':'LliureX','http://mestreacasa.gva.es/web/lliurex/forums':'Foro de LliureX'};
+var lliurex_bm_url={'http://wiki.edu.gva.es/lliurex/tiki-index.php':'Wiki de LliureX','http://mestreacasa.gva.es/web/lliurex':'LliureX','http://mestreacasa.gva.es/web/lliurex/forums':'Foro de LliureX'};
 var extra_bm_url={'http://mestreacasa.gva.es/web/guest/inicio':'Mestre a casa'};
 var gva_tools={'https://itaca.edu-gva.es':'Itaca',
 'https://aules.edu.gva.es/moodle':'Aules',
@@ -17,7 +17,6 @@ var gva_tools={'https://itaca.edu-gva.es':'Itaca',
 var gva_sites={'https://www.ceice.gva.es/es':'Web CEICE',
 'https://portal.edu.gva.es/cvtic':'Comunidad CvTIV',
 'http://www.ceice.gva.es/es/web/formacion-profesorado':'CEFIREs',
-'http://google.es':'Wiki'
 };
 var bm_dict={'LliureX':lliurex_bm_url,'Mestre a casa':extra_bm_url,'Utils. GVA':gva_tools,'GVA sites':gva_sites};
 var bm_treeNode='';
@@ -48,15 +47,11 @@ function checkBookmarks(bm_item)
 		console.log("Lliurex-on-fire: check url " + bm_url);
 		console.log("Lliurex-on-fire: name " + bm_name);
 		chrome.bookmarks.search({'title':bm_name,'url':bm_url},function helper(bmTree){
-			if (bmTree[0]==null){
-				bm_data={'title':bm_name,'url':bm_url,'parentId':bm.id,'index':0};
-				console.log('create '+bm_data['title']);
-				chrome.bookmarks.create(bm_data);
-			}else{
-				console.log("Found");
-				console.log(bmTree);
-				console.log(bm_item);
-			}
+			if ((bmTree[0]!=null) && (bmTree[0].url!=null))
+				chrome.bookmarks.remove(bmTree[0].id)
+			bm_data={'title':bm_name,'url':bm_url,'parentId':bm.id,'index':0};
+			console.log('create '+bm_data['title']);
+			chrome.bookmarks.create(bm_data);
 		});
 	}
 	var query={'title':bm.title};
@@ -108,7 +103,6 @@ function processBookmarks(bm_folder)
 
 function resolved(record)
 {
-	console.log("Fetch ok");
 	let ip=record.addresses[0];
 	console.log(record);
 	record=null;
@@ -126,13 +120,6 @@ function resolved(record)
 function not_resolved(record)
 {
 	return;
-/*	console.log(record);
-	updating=chrome.tabs.update(id,{
-			active:true,
-			url: "page/index.html?err=404&text=page could not be loaded"
-	});
-	console.log("Delete "+tabUrl);
-	browser.history.deleteUrl({'url':tabUrl});*/
 }
 //function not_resolved
 
