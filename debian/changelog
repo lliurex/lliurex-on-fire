@@ -1,3 +1,9 @@
+lliurex-on-fire (0.5) bionic; urgency=medium
+
+  * Fix bookmark creation
+
+ -- Juanma Navarro Mañez <juanma1980@gmail.com>  Tue, 23 Jul 2019 12:32:30 +0200
+
 lliurex-on-fire (0.4) bionic; urgency=medium
 
   * Custom error page only loads when lliurex guard is blocking the target page
