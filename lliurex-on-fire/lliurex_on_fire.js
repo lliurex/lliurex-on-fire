@@ -4,7 +4,7 @@
 
 var lliurex_bm_url={'http://wiki.edu.gva.es/lliurex/tiki-index.php':'Wiki de LliureX','http://mestreacasa.gva.es/web/lliurex':'LliureX','http://mestreacasa.gva.es/web/lliurex/forums':'Foro de LliureX'};
 var extra_bm_url={'http://mestreacasa.gva.es/web/guest/inicio':'Mestre a casa'};
-var gva_tools={'https://itaca.edu-gva.es':'Itaca',
+var gva_tools={'https://itaca.edu.gva.es':'Itaca',
 'https://aules.edu.gva.es/moodle':'Aules',
 'https://webmail.gva.es':'Webmail',
 'http://otrs.edu.gva.es/otrs/customer.pl':'Incidencias',
@@ -14,7 +14,7 @@ var gva_tools={'https://itaca.edu-gva.es':'Itaca',
 'https://appweb.edu.gva.es/InventarioWeb':'Inventario TIC',
 'https://oficinavirtual.gva.es':'OVICE'
 };
-var gva_sites={'https://www.ceice.gva.es/es':'Web CEICE',
+var gva_sites={'http://www.ceice.gva.es/es':'Web CEICE',
 'https://portal.edu.gva.es/cvtic':'Comunidad CvTIV',
 'http://www.ceice.gva.es/es/web/formacion-profesorado':'CEFIREs',
 };
