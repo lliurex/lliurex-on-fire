@@ -14,7 +14,7 @@ var gva_tools={'https://itaca.edu.gva.es':'Itaca',
 'https://appweb.edu.gva.es/InventarioWeb':'Inventario TIC',
 'https://oficinavirtual.gva.es':'OVICE'
 };
-var gva_sites={'https://www.ceice.gva.es/es':'Web CEICE',
+var gva_sites={'http://www.ceice.gva.es/es':'Web CEICE',
 'https://portal.edu.gva.es/cvtic':'Comunidad CvTIV',
 'http://www.ceice.gva.es/es/web/formacion-profesorado':'CEFIREs',
 };
