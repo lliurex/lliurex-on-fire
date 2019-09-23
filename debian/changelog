@@ -1,3 +1,9 @@
+lliurex-on-fire (0.5,1) bionic; urgency=medium
+
+  * Fix some typos in bookmarks
+
+ -- Juanma Navarro Mañez <juanma1980@gmail.com>  Mon, 23 Sep 2019 10:32:37 +0200
+
 lliurex-on-fire (0.5) bionic; urgency=medium
 
   * Fix bookmark creation
