@@ -2,12 +2,12 @@
  * Extension that adds Lliurex mods to Firefox/Chromium
  */
 
-var lliurex_bm_url={'http://wiki.edu.gva.es/lliurex/tiki-index.php':'Wiki de LliureX','http://mestreacasa.gva.es/web/lliurex':'LliureX','http://mestreacasa.gva.es/web/lliurex/forums':'Foro de LliureX'};
-var extra_bm_url={'http://mestreacasa.gva.es/web/guest/inicio':'Mestre a casa'};
+var lliurex_bm_url={'https://wiki.edu.gva.es/lliurex/tiki-index.php':'Wiki de LliureX','https://mestreacasa.gva.es/web/lliurex':'LliureX','https://mestreacasa.gva.es/web/lliurex/forums':'Foro de LliureX'};
+var extra_bm_url={'https://mestreacasa.gva.es/web/guest/inicio':'Mestre a casa'};
 var gva_tools={'https://itaca.edu.gva.es':'Itaca',
 'https://aules.edu.gva.es/moodle':'Aules',
 'https://webmail.gva.es':'Webmail',
-'http://otrs.edu.gva.es/otrs/customer.pl':'Incidencias',
+'https://otrs.edu.gva.es/otrs/customer.pl':'Incidencias',
 'https://ovidoc.edu.gva.es':'OVIDOC',
 'https://appweb.edu.gva.es/SID':'SID',
 'http://www.ceice.gva.es/es/web/centros-docentes/guia-de-centros-docentes':'Guía de Centros',
@@ -187,11 +187,11 @@ function exploreTree(bookmarkItems)
 	console.log(bm_tree);
 }
 
-chrome.webRequest.onBeforeRequest.addListener(
+/*chrome.webRequest.onBeforeRequest.addListener(
 	redirect,
 	{urls: [lliurexUrl]},
 	["blocking"]
-);
+);*/
 		
 chrome.webNavigation.onErrorOccurred.addListener(
 		loadErrorOcurred
