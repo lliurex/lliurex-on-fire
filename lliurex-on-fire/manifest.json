@@ -13,9 +13,7 @@
   },
 
   "permissions": [
-	"dns",
 	"history",
-	"<all_urls>",
 	"tabs",
 	"webNavigation",
 	"bookmarks"
