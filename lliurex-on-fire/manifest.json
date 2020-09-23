@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "LliurexOnFire",
-  "version": "0.6.0",
+  "version": "0.6.1",
 
   "description": "Add custom settings for LliureX",
   
@@ -13,9 +13,7 @@
   },
 
   "permissions": [
-	"dns",
 	"history",
-	"<all_urls>",
 	"tabs",
 	"webNavigation",
 	"bookmarks"
