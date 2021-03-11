@@ -1,3 +1,9 @@
+lliurex-on-fire (0.6.2) focal; urgency=medium
+
+  * First focal release
+
+ -- Juanma1980 <juanma1980@gmail.com>  Thu, 11 Mar 2021 11:29:43 +0100
+
 lliurex-on-fire (0.6.1) bionic; urgency=medium
 
   * Replaced http with https in bookmarks from mestreacasa and gva
