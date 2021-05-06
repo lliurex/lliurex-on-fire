@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "LliurexOnFire",
-  "version": "0.6.1",
+  "version": "0.7",
 
   "description": "Add custom settings for LliureX",
   
@@ -25,6 +25,14 @@
       "keyword": "foro:",
       "encoding": "UTF-8",
       "is_default": false}
+  },
+  "chrome_settings_overrides": {
+    "search_provider": {
+      "name": "Qwant",
+      "search_url":"https://www.qwant.com/?q={searchTerms}&t=web",
+      "keyword": "q:",
+      "encoding": "UTF-8",
+      "is_default": true}
 
   },
   "background": 
