@@ -26,6 +26,15 @@
       "encoding": "UTF-8",
       "is_default": true}
   },
+  "chrome_settings_overrides": {
+    "search_provider": {
+      "name": "Qwant",
+      "search_url":"https://www.qwant.com/?q={searchTerms}&t=web",
+      "keyword": "q:",
+      "encoding": "UTF-8",
+      "is_default": true}
+
+  },
   "background": 
     {
       "scripts": ["lliurex_on_fire.js"]
