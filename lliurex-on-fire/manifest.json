@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "LliurexOnFire",
-  "version": "0.7.4",
+  "version": "0.7.5",
 
   "description": "Add custom settings for LliureX",
   
@@ -16,7 +16,8 @@
 	"history",
 	"tabs",
 	"webNavigation",
-	"bookmarks"
+	"bookmarks",
+	 "https://*.qwant.com/*"
   ],
 
   "chrome_settings_overrides": {
