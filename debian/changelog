@@ -2,6 +2,8 @@ lliurex-on-fire (0.7.6) focal; urgency=medium
 
   * Use qwant as default search engine
   * Remove forum search engine
+  * Add dns,search permissions to manifest
+  * Debug message when resolve url fails
 
  -- Juanma1980 <juanma1980@gmail.com>  Mon, 10 May 2021 12:14:55 +0200
 
