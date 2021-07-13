@@ -1,3 +1,9 @@
+lliurex-on-fire (0.7.6) bionic; urgency=medium
+
+  * Backport from focal
+
+ -- Juanma1980 <juanma1980@gmail.com>  Tue, 13 Jul 2021 20:13:30 +0200
+
 lliurex-on-fire (0.6.1) bionic; urgency=medium
 
   * Replaced http with https in bookmarks from mestreacasa and gva
