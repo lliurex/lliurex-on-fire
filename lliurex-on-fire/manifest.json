@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "LliurexOnFire",
-  "version": "0.6.1",
+  "version": "0.7.6",
 
   "description": "Add custom settings for LliureX",
   
@@ -15,17 +15,21 @@
   "permissions": [
 	"history",
 	"tabs",
+	"dns",
+	"search",
 	"webNavigation",
-	"bookmarks"
+	"bookmarks",
+	 "https://*.qwant.com/*"
   ],
-  "chrome_settings_overrides": {
-    "search_provider": {
-      "name": "LliureX Forum",
-      "search_url":"https://mestreacasa.gva.es/web/lliurex/forums?p_p_id=19&p_p_action=0&p_p_state=maximized&p_p_mode=view&_19_struts_action=%2Fmessage_boards%2Fsearch&_19_redirect=%2Fweb%2Flliurex%2Fforums%2Fmessage_boards%2Fcategory%2F500003310420&_19_breadcrumbsCategoryId=500003310420&_19_searchCategoryId=500003310420&_19_tabs1TabsScroll=&_19_keywords={searchTerms}",
-      "keyword": "foro:",
-      "encoding": "UTF-8",
-      "is_default": false}
 
+  "chrome_settings_overrides": {
+     "search_provider": {
+       "name": "Qwant",
+       "keyword": "q",
+       "search_url": "https://www.qwant.com/?q={searchTerms}&client=ext-firefox-sb",
+       "favicon_url": "https://www.qwant.com/favicon.ico",
+       "suggest_url": "https://api.qwant.com/api/suggest/?q={searchTerms}&client=opensearch&lang=__MSG_locale__",
+       "is_default": true}
   },
   "background": 
     {

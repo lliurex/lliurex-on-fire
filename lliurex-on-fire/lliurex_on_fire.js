@@ -123,6 +123,8 @@ function resolved(record)
 
 function not_resolved(record)
 {
+	console.log("Not resolved");
+	console.log(record);
 	return;
 }
 //function not_resolved
