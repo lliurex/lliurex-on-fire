@@ -131,10 +131,16 @@ function not_resolved(record)
 
 function loadErrorOcurred(details)
 {
+	console.log("LOAD ERROR");
 	//Disabled. Remove "return" to enable
 //	return;
 	id=details.tabId;
 	tabUrl=details.url;
+	if (tabUrl.startsWith("moz"))
+	{
+		return;
+	}
+	console.log(tabUrl);
 	frameId=details.frameId;
 	let domain=new URL(details.url).hostname;
 	if((typeof(browser.dns=="object")) && (frameId==0))
