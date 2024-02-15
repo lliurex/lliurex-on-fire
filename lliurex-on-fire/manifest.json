@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "LliurexOnFire",
-  "version": "0.9",
+  "version": "0.9.2",
 
   "description": "Add custom settings for LliureX",
 
@@ -15,7 +15,7 @@
   "browser_specific_settings": {
     "gecko":{
 		"id": "lliurexonfire@lliurex.net",
-		"strict_min_version": "42.0"}
+		"strict_min_version": "96.0"}
   },
 
   "permissions": [
