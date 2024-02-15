@@ -1,15 +1,21 @@
 {
   "manifest_version": 2,
   "name": "LliurexOnFire",
-  "version": "0.8",
+  "version": "0.9",
 
   "description": "Add custom settings for LliureX",
-  
+
   "icons": {
     "16": "icons/lliurex_on_fire16.png",
     "48": "icons/lliurex_on_fire48.png",
     "64": "icons/lliurex_on_fire64.png",
     "128": "icons/lliurex_on_fire128.png"
+  },
+
+  "browser_specific_settings": {
+    "gecko":{
+		"id": "lliurexonfire@lliurex.net",
+		"strict_min_version": "42.0"}
   },
 
   "permissions": [
@@ -26,9 +32,9 @@
      "search_provider": {
        "name": "Qwant",
        "keyword": "q",
-       "search_url": "https://www.qwant.com/?q={searchTerms}&client=ext-firefox-sb",
+       "search_url": "https://www.qwant.com/?q={searchTerms}&client=ext-firefox-sb&s=2",
        "favicon_url": "https://www.qwant.com/favicon.ico",
-       "suggest_url": "https://api.qwant.com/api/suggest/?q={searchTerms}&client=opensearch&lang=__MSG_locale__",
+       "suggest_url": "https://api.qwant.com/api/suggest/?q={searchTerms}&s=2&client=opensearch&lang=__MSG_locale__",
        "is_default": true}
   },
   "background": 
