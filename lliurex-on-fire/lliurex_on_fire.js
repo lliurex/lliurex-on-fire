@@ -2,9 +2,14 @@
  * Extension that adds Lliurex mods to Firefox/Chromium
  */
 
-var lliurex_bm_url={'https://wiki.edu.gva.es/lliurex/tiki-index.php':'Wiki de LliureX','https://portal.edu.gva.es/lliurex/va':'LliureX','https://mestreacasa.gva.es/web/lliurex/forums':'Foro de LliureX','https://portal.edu.gva.es/appsedu/aplicacions/':'AppsEdu'};
+var lliurex_bm_url={'https://wiki.edu.gva.es/lliurex/tiki-index.php':'Wiki de LliureX',
+'https://mestreacasa.gva.es/web/lliurex':'',
+'https://portal.edu.gva.es/lliurex/va':'LliureX',
+'https://mestreacasa.gva.es/web/lliurex/forums':'Foro de LliureX',
+'https://portal.edu.gva.es/appsedu/aplicacions/':'AppsEdu'};
 var extra_bm_url={'https://mestreacasa.gva.es/web/guest/inicio':'Mestre a casa'};
 var gva_tools={'https://itaca3.edu.gva.es/escriptori/':'Itaca',
+'https://itaca.edu.gva.es':'',
 'https://aules.edu.gva.es/moodle':'Aules',
 'https://webmail.gva.es':'',
 'https://otrs.edu.gva.es/otrs/customer.pl':'Incidencias',
@@ -46,10 +51,19 @@ function checkBookmarks(bm_item)
 	for (let [bm_url,bm_name] of Object.entries(folder_dict)){
 		console.log("Lliurex-on-fire: check url " + bm_url);
 		console.log("Lliurex-on-fire: name " + bm_name);
+		//chrome.bookmarks.search({'title':bm_name,'url':bm_url.replace("https","http")},function helper(bmTree){
+		chrome.bookmarks.search({'title':bm_name},function helper(bmTree){
+			for (let [bmT] of Object.entries(bmTree)){
+				if (bmT!=null) 
+					console.log('Remove '+bmTree[bmT].title);
+					console.log('Remove '+bmTree[bmT].url);
+					//chrome.bookmarks.remove(bmTree[bmT].id);
+			}
+		});
 		chrome.bookmarks.search({'url':bm_url},function helper(bmTree){
 			for (let [bmT] of Object.entries(bmTree)){
 				if (bmT!=null) 
-					console.log('Remove url'+bmT);
+					console.log('Remove url '+bmT);
 					chrome.bookmarks.remove(bmTree[bmT].id);
 			}
 		});
