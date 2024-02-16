@@ -46,14 +46,6 @@ function checkBookmarks(bm_item)
 	for (let [bm_url,bm_name] of Object.entries(folder_dict)){
 		console.log("Lliurex-on-fire: check url " + bm_url);
 		console.log("Lliurex-on-fire: name " + bm_name);
-		//chrome.bookmarks.search({'title':bm_name,'url':bm_url.replace("https","http")},function helper(bmTree){
-		chrome.bookmarks.search({'title':bm_name},function helper(bmTree){
-			for (let [bmT] of Object.entries(bmTree)){
-				if (bmT!=null) 
-					console.log('Remove '+bmT);
-					//chrome.bookmarks.remove(bmTree[bmT].id);
-			}
-		});
 		chrome.bookmarks.search({'url':bm_url},function helper(bmTree){
 			for (let [bmT] of Object.entries(bmTree)){
 				if (bmT!=null) 
