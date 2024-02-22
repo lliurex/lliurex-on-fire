@@ -66,7 +66,7 @@ function generate_firefox_addon
 	cp -R ${BASE_DIR}"/"${ADDON} $BUILD_DIR
 	cd $BUILD_DIR"/"${ADDON}
 	sed -i -e '$s/}//' -e 's/[[:space:]]}$/},/' manifest.json
-	echo "$MOZILLA_MANIFEST_ID" >> manifest.json
+#	echo "$MOZILLA_MANIFEST_ID" >> manifest.json
 	web-ext build
 	#Remember to fill MOZILLA_USER and MOZILLA_KEY in passfile 
 	web-ext sign --api-key=$MOZILLA_USER --api-secret=$MOZILLA_KEY
