@@ -1,3 +1,9 @@
+lliurex-on-fire (0.9.4.0lliurex21) focal; urgency=medium
+
+  * Sync with jammy
+
+ -- Juanma1980 <juanma1980@gmail.com>  Tue, 27 Feb 2024 09:25:37 +0100
+
 lliurex-on-fire (0.8.0.4) focal; urgency=medium
 
   * Fix reload loop when trying to show lliurex-guard page
