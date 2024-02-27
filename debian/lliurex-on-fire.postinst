@@ -1,0 +1,29 @@
+#!/bin/bash
+
+set -e
+
+case $1 in 
+
+    configure)
+        
+		for i in /home/*
+		do
+			if [ -e ${i}/.mozilla/firefox ]
+			then
+				find $i/.mozilla/firefox -name "lliurex-on-fire@lliurex.net.xpi" | xargs cp -v /usr/lib/firefox/distribution/extensions/lliurex-on-fire@lliurex.net.xpi 
+			fi
+		done
+
+    ;;
+    abort-upgrade|abort-remove|abort-deconfigure)
+    ;;
+
+    *)
+    	echo "postinst called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+    
+esac
+
+#DEBHELPER#
+exit 0
