@@ -3,7 +3,7 @@
     "lliurex-on-fire@lliurex.net":{
       "updates": [
         {
-          "version": "0.9.3",
+          "version": "0.9.4",
           "update_link": "https://github.com/lliurex/lliurex-on-fire/raw/master/firefox_addon/usr/lib/firefox/distribution/extensions/lliurex-on-fire@lliurex.net.xpi"
         }
       ]
