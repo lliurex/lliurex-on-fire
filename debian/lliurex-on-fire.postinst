@@ -10,7 +10,7 @@ case $1 in
 		do
 			if [ -e ${i}/.mozilla/firefox ]
 			then
-				find $i/.mozilla/firefox -name "lliurex-on-fire@lliurex.net.xpi" | xargs cp -v /usr/lib/firefox/distribution/extensions/lliurex-on-fire@lliurex.net.xpi 
+				find $i/.mozilla/firefox -name "lliurex-on-fire@lliurex.net.xpi" | xargs cp /usr/lib/firefox/distribution/extensions/lliurex-on-fire@lliurex.net.xpi 
 			fi
 		done
 
