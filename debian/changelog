@@ -1,3 +1,9 @@
+lliurex-on-fire (0.9.4.1+0lliurex23) jammy; urgency=medium
+
+  * Prevent error if user has deleted the plugin
+
+ -- Juanma1980 <juanma1980@gmail.com>  Fri, 08 Mar 2024 12:43:24 +0100
+
 lliurex-on-fire (0.9.4.0lliurex23) jammy; urgency=medium
 
   * Firefox addon: bookmarks updated
