@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "Lliurex-on-Fire",
+  "version": "0.9.5",
+
+  "description": "Add custom settings for LliureX",
+
+  "icons": {
+    "16": "icons/lliurex_on_fire16.png",
+    "48": "icons/lliurex_on_fire48.png",
+    "64": "icons/lliurex_on_fire64.png",
+    "128": "icons/lliurex_on_fire128.png"
+  },
+
+  "permissions": [
+    "history",
+    "tabs",
+    "dns",
+    "search",
+    "webNavigation",
+    "bookmarks"
+  ],
+  "host_permissions": [
+     "https://*.qwant.com/*"
+  ],
+
+  "chrome_settings_overrides": {
+     "search_provider": {
+       "name": "Qwant",
+       "keyword": "q",
+       "search_url": "https://www.qwant.com/?q={searchTerms}&s=2&client=ext-firefox-sb&hti=0",
+       "favicon_url": "https://wwww.qwant.com/favicon.ico",
+       "suggest_url": "https://api.qwant.com/api/suggest/?q={searchTerms}&hti=0&s=2&client=opensearch&lang=__MSG_locale__",
+       "is_default": true
+	   }
+  },
+
+  "browser_specific_settings": {
+    "gecko":{
+		"id": "lliurex-on-fire@lliurex.net",
+		"strict_min_version": "109.0"
+		},
+		"update_url":"https://raw.githubusercontent.com/lliurex/lliurex-on-fire/master/updates/lof.json"
+  },
+
+  "background": 
+    {
+      "service_worker": "lliurex_on_fire.js"
+    }
+}

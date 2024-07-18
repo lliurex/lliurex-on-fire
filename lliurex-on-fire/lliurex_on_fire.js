@@ -43,6 +43,16 @@ function redirect(requestDetails)
 }
 //function redirect
 
+function removeBookmarkFromId(bmTree)
+{
+	for (let [bmT] of Object.entries(bmTree)){
+		if (bmT!=null) 
+			console.log('Remove url '+bmT);
+			chrome.bookmarks.remove(bmTree[bmT].id).catch(not_resolved);
+			};
+}
+//function removeBookmarkFromId
+
 function checkBookmarks(bm_item)
 {
 	let bm=bm_item;
@@ -51,41 +61,8 @@ function checkBookmarks(bm_item)
 	for (let [bm_url,bm_name] of Object.entries(folder_dict)){
 		console.log("Lliurex-on-fire: check url " + bm_url);
 		console.log("Lliurex-on-fire: name " + bm_name);
-		//chrome.bookmarks.search({'title':bm_name,'url':bm_url.replace("https","http")},function helper(bmTree){
-		chrome.bookmarks.search({'title':bm_name},function helper(bmTree){
-			for (let [bmT] of Object.entries(bmTree)){
-				if (bmT!=null) 
-					console.log('Remove '+bmTree[bmT].title);
-					console.log('Remove '+bmTree[bmT].url);
-					//chrome.bookmarks.remove(bmTree[bmT].id);
-			}
-		});
-		chrome.bookmarks.search({'url':bm_url},function helper(bmTree){
-			for (let [bmT] of Object.entries(bmTree)){
-				if (bmT!=null) 
-					console.log('Remove url '+bmT);
-					chrome.bookmarks.remove(bmTree[bmT].id);
-			}
-		});
-	}
-
-	for (let [bm_url,bm_name] of Object.entries(folder_dict)){
-		chrome.bookmarks.search({'title':bm_name,'url':bm_url},function helper(bmTree){
-			for (let [bmT] of Object.entries(bmTree)){
-				if (bmT!=null)
-				{
-					console.log('Remove ID '+bmTree[0].id);
-					chrome.bookmarks.remove(bmTree[bmT].id)
-				}
-			}
-			if ((bm_name.length>0)) //&& (bm_name.length>0))
-			{
-				bm_data={'title':bm_name,'url':bm_url,'parentId':bm.id,'index':0};
-				console.log('create '+bm_data['title']);
-				chrome.bookmarks.create(bm_data);
-			}
-		});
-
+		chrome.bookmarks.search({'url':bm_url}).then(removeBookmarkFromId,not_resolved).catch(not_resolved);
+		chrome.bookmarks.search({'title':bm_name}).then(removeBookmarkFromId,not_resolved).catch(not_resolved);
 	}
 	var query={'title':bm.title};
 	chrome.bookmarks.search(query,reload);
