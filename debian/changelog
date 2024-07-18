@@ -1,3 +1,9 @@
+lliurex-on-fire (0.9.5+0lliurex21) focal; urgency=medium
+
+  * DDG as search engine
+
+ -- Juanma1980 <juanma1980@gmail.com>  Thu, 18 Jul 2024 11:37:49 +0200
+
 lliurex-on-fire (0.9.4.1+0lliurex21) focal; urgency=medium
 
   * Sync with jammy
