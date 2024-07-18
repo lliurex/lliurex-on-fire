@@ -11,6 +11,7 @@ case $1 in
 			if [ -e ${i}/.mozilla/firefox ]
 			then
 				find $i/.mozilla/firefox -name "lliurex-on-fire@lliurex.net.xpi" | xargs cp /usr/lib/firefox/distribution/extensions/lliurex-on-fire@lliurex.net.xpi || true
+				find $i/.mozilla/firefox -name "search.json.mozlz4" | xargs cp /usr/lib/firefox/search.json.mozlz4 || true
 			fi
 		done
 
