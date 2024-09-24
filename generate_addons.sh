@@ -5,15 +5,15 @@
 ADDON=lliurex-on-fire
 NODE_MIN_VERSION=6
 BASE_DIR=${PWD}
-MANIFEST=${BASE_DIR}/${ADDON}/manifest.json
 #If the .pem file changes CHROMIUM_ID will change and must be updated "manually"
 CHROMIUM_ID=akabjpjncgokcndehhncnbgginikpgdp
 CHROMIUM_DIR=${BASE_DIR}/chromium_addon/usr/share/chromium/extensions
-CHROMIUM_MANIFEST=${BASE_DIR}/${ADDON}/manifest.json_google
 CHROME_DIR=${BASE_DIR}/chromium_addon/usr/share/google-chrome/extensions
 FIREFOX_DIR=${BASE_DIR}/firefox_addon/usr/lib/firefox/distribution/extensions
-FIREFOX_MANIFEST=${BASE_DIR}/${ADDON}/manifest.json_mozilla
 BUILD_DIR=${BASE_DIR}"/build"
+MANIFEST=${ADDON}/manifest.json
+CHROMIUM_MANIFEST=${ADDON}/manifest.json_google
+FIREFOX_MANIFEST=${ADDON}/manifest.json_mozilla
 #Mozilla supports the id key at manifest.json 
 MOZILLA_ID=lliurex-on-fire@lliurex.net
 MOZILLA_MANIFEST_ID="\"applications\":
@@ -48,7 +48,7 @@ function generate_chromium_addon
 	mkdir -p $CHROMIUM_DIR 2>/dev/null
 	cp -r ${BASE_DIR}"/"${ADDON} $BUILD_DIR 
 	cd $BUILD_DIR
-	cp $CHROMIUM_MANIFEST $MANIFEST
+	cp -v $CHROMIUM_MANIFEST $MANIFEST
 	EXTERNAL_VERSION=$(grep \"version\": ${ADDON}/manifest.json | cut -d '"' -f4)
 	#If for any reason there's a need to regenerate the pem file uncomment this lines and refresh CHROMIUM_ID value
 #	chromium-browser --pack-extension=${BUILD_DIR}"/"$ADDON
@@ -68,10 +68,11 @@ function generate_firefox_addon
 	mkdir -p $BUILD_DIR 2>/dev/null
 	mkdir -p $FIREFOX_DIR 2>/dev/null
 	cp -R ${BASE_DIR}"/"${ADDON} $BUILD_DIR
-	cd $BUILD_DIR"/"${ADDON}
-	cp $FIREFOX_MANIFEST $MANIFEST
+	cd $BUILD_DIR
+	cp - $FIREFOX_MANIFEST $MANIFEST
 #	sed -i -e '$s/}//' -e 's/[[:space:]]}$/},/' manifest.json
 #	echo "$MOZILLA_MANIFEST_ID" >> manifest.json
+	cd $ADDON
 	web-ext build
 	#Remember to fill MOZILLA_USER and MOZILLA_KEY in passfile 
 	web-ext sign --api-key=$MOZILLA_USER --api-secret=$MOZILLA_KEY
