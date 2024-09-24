@@ -1,3 +1,9 @@
+lliurex-on-fire (0.9.6lliurex23) jammy; urgency=medium
+
+  * Fix bookmarks compat FF>120
+
+ -- Juanma1980 <juanma1980@gmail.com>  Tue, 24 Sep 2024 07:21:06 +0200
+
 lliurex-on-fire (0.9.5+1lliurex23) jammy; urgency=medium
 
   * DDG as search engine
