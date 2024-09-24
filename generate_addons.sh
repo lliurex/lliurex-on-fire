@@ -69,7 +69,7 @@ function generate_firefox_addon
 	mkdir -p $FIREFOX_DIR 2>/dev/null
 	cp -R ${BASE_DIR}"/"${ADDON} $BUILD_DIR
 	cd $BUILD_DIR
-	cp - $FIREFOX_MANIFEST $MANIFEST
+	cp -v $FIREFOX_MANIFEST $MANIFEST
 #	sed -i -e '$s/}//' -e 's/[[:space:]]}$/},/' manifest.json
 #	echo "$MOZILLA_MANIFEST_ID" >> manifest.json
 	cd $ADDON
