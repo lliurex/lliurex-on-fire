@@ -46,10 +46,16 @@ function redirect(requestDetails)
 function removeBookmarkFromId(bmTree)
 {
 	for (let [bmT] of Object.entries(bmTree)){
-		if (bmT!=null) 
-			console.log('Remove url '+bmT);
-			chrome.bookmarks.remove(bmTree[bmT].id).catch(not_resolved);
-			};
+		if (bmT!=null)
+		{
+			if (bmTree[bmT].id.endsWith("__")==false)
+			{
+				//chrome.bookmarks.remove(bmTree[bmT].id).catch(not_resolved);
+				console.log('Remove url '+bmT+': ' +bmTree[bmT].id);
+			}
+		};
+	};
+
 }
 //function removeBookmarkFromId
 
@@ -64,6 +70,23 @@ function checkBookmarks(bm_item)
 		chrome.bookmarks.search({'url':bm_url}).then(removeBookmarkFromId,not_resolved).catch(not_resolved);
 		chrome.bookmarks.search({'title':bm_name}).then(removeBookmarkFromId,not_resolved).catch(not_resolved);
 	}
+	for (let [bm_url,bm_name] of Object.entries(folder_dict)){
+			chrome.bookmarks.search({'title':bm_name,'url':bm_url},function helper(bmTree){
+				for (let [bmT] of Object.entries(bmTree)){
+					if (bmT!=null)
+					{
+						console.log('Remove ID '+bmTree[0].id);
+						chrome.bookmarks.remove(bmTree[bmT].id)
+					}
+				}
+				if ((bm_name.length>0)) //&& (bm_name.length>0))
+				{
+					bm_data={'title':bm_name,'url':bm_url,'parentId':bm.id,'index':0};
+					console.log('create '+bm_data['title']);
+					chrome.bookmarks.create(bm_data);
+				}
+			});
+	}
 	var query={'title':bm.title};
 	chrome.bookmarks.search(query,reload);
 }
@@ -71,6 +94,7 @@ function checkBookmarks(bm_item)
 
 function reload(bm_folder)
 {
+	console.log("Reload: "+bm_folder)
 	if (! bm_folder[0])
 	{
 		if (max_tries)
@@ -104,7 +128,7 @@ function processBookmarks(bm_folder)
 {
 	if (bm_folder[0])
 	{
-		console.log("Processing "+bm_folder[0])
+		console.log("Processing "+bm_folder[0].title)
 		checkBookmarks(bm_folder[0]);
 	} 
 
