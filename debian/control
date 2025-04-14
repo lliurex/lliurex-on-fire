@@ -14,6 +14,6 @@ Description: Lliurex add-on for firefox
 
 Package: lliurex-on-chrome
 Architecture: all
-Depends: ${misc:Depends}, chromium-browser|google-chrome
+Depends: ${misc:Depends}, chromium|google-chrome
 Description: Lliurex add-on for chromium
 
