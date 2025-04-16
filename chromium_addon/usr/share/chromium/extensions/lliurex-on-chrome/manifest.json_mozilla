@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "Lliurex-on-Fire",
+  "version": "0.9.6",
+
+  "description": "Add custom settings for LliureX",
+
+  "icons": {
+    "16": "icons/lliurex_on_fire16.png",
+    "48": "icons/lliurex_on_fire48.png",
+    "64": "icons/lliurex_on_fire64.png",
+    "128": "icons/lliurex_on_fire128.png"
+  },
+
+  "permissions": [
+    "history",
+    "tabs",
+    "dns",
+    "search",
+    "webNavigation",
+    "bookmarks"
+  ],
+
+  "chrome_settings_overrides": {
+       "search_provider": {
+           "favicon_url": "icons/favicon.ico",
+           "is_default": true,
+           "keyword": "duckduckgo.com",
+           "name": "DuckDuckGo",
+           "search_url": "https://duckduckgo.com/?q={searchTerms}&t=newext",
+           "suggest_url": "https://duckduckgo.com/ac/?q={searchTerms}&type=list"
+       }
+   },
+     
+  "browser_specific_settings": {
+    "gecko":{
+		"id": "lliurex-on-fire@lliurex.net",
+		"strict_min_version": "109.0"},
+		"update_url":"https://raw.githubusercontent.com/lliurex/lliurex-on-fire/master/updates/lof.json"
+  },
+
+  "background": 
+    {
+      "scripts": ["lliurex_on_fire.js"]
+    }
+}
