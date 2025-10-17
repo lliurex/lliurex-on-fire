@@ -268,16 +268,32 @@ chrome.webNavigation.onErrorOccurred.addListener(
 		loadErrorOcurred
 	);
 
+
+self.addEventListener('install', (event) => {
+	main
+});
+
+self.addEventListener('activate', (event) => {
+	main
+});
+
+
+function main()
+{
+	console.log("Processing...");
+	for (let idx in bm_remove)
+	{
+		removeFolderByName(bm_remove[idx]);
+	}
+	for (let name in bm_dict)
+	{
+		removeFolderByName(name);
+	}
+	for (let name in bm_dict)
+		createBookmarksFolder(name);
+}
+
 var id=0;
 var name="";
 console.log("Lliurex-on-fire: Init");
-for (let idx in bm_remove)
-{
-	removeFolderByName(bm_remove[idx]);
-}
-for (let name in bm_dict)
-{
-	removeFolderByName(name);
-}
-for (let name in bm_dict)
-	createBookmarksFolder(name);
+main();
