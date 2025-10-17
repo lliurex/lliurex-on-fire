@@ -100,6 +100,7 @@ function generate_chromium_addon
 	cd $CHROMIUM_DIR
 	mkdir $(basename $CHROMIUM_BUILD_DIR)
 	cd $(basename $CHROMIUM_BUILD_DIR)
+	#The extension must be distributed unpacked
 	unzip ../lliurex-on-chrome.crx
 	rm ../lliurex-on-chrome.crx
 	cd ..
