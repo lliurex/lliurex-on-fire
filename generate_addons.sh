@@ -77,7 +77,7 @@ function generate_firefox_addon
 	cd $ADDON
 	web-ext build
 	#Remember to fill MOZILLA_USER and MOZILLA_KEY in passfile 
-	web-ext sign --api-key=$MOZILLA_USER --api-secret=$MOZILLA_KEY
+	web-ext sign --api-key=$MOZILLA_USER --api-secret=$MOZILLA_KEY --channel=unlisted
 	cd web-ext-artifacts
 	mv *xpi ${FIREFOX_DIR}/${MOZILLA_ID}.xpi
 	cd ${BASE_DIR}
