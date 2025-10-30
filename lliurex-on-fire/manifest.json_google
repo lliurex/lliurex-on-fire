@@ -2,6 +2,7 @@
   "manifest_version": 3,
   "name": "Lliurex-on-Chrome",
   "version": "0.9.6",
+  "key": "akabjpjncgokcndehhncnbgginikpgdp",
 
   "description": "Add custom settings for LliureX",
 
