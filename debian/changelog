@@ -1,3 +1,10 @@
+lliurex-on-fire (0.9.7.3+0llx25) noble; urgency=medium
+
+  * WIP on chromium extension
+  * PENDING firefox extension update
+
+ -- Juanma1980 <juanma1980@gmail.com>  Wed, 11 Feb 2026 19:00:35 +0100
+
 lliurex-on-fire (0.9.6+1llx25) noble; urgency=medium
 
   * Noble release
