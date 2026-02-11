@@ -21,6 +21,12 @@
     "bookmarks"
   ],
 
+  	"chrome_url_overrides":
+	{
+		"newtab":"new_tab/index.html"
+	},
+
+
   "background": 
     {
       "service_worker": "lliurex_on_fire.js"

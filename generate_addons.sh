@@ -2,20 +2,20 @@
 #Don't execute!! rules will launch it in the build package step
 #!/bin/bash
 
-ADDON=lliurex-on-fire
-CHROMIUM_ADDON=lliurex-on-chrome
 NODE_MIN_VERSION=6
 BASE_DIR=${PWD}
+ADDON=lliurex-on-fire
+CHROMIUM_ADDON=lliurex-on-chrome
+BUILD_DIR=${BASE_DIR}"/build"
+MANIFEST=${ADDON}/manifest.json
+FIREFOX_MANIFEST=${ADDON}/manifest.json_mozilla
+FIREFOX_DIR=${BASE_DIR}/firefox_addon/usr/lib/firefox/distribution/extensions
 #If the .pem file changes CHROMIUM_ID will change and must be updated "manually"
 CHROMIUM_ID=akabjpjncgokcndehhncnbgginikpgdp
 CHROMIUM_DIR=${BASE_DIR}/chromium_addon/usr/share/chromium/extensions
 CHROME_DIR=${BASE_DIR}/chromium_addon/usr/share/google-chrome/extensions
-FIREFOX_DIR=${BASE_DIR}/firefox_addon/usr/lib/firefox/distribution/extensions
-BUILD_DIR=${BASE_DIR}"/build"
 CHROMIUM_BUILD_DIR=${BUILD_DIR}"/lliurex-on-chrome"
-MANIFEST=${ADDON}/manifest.json
 CHROMIUM_MANIFEST=${ADDON}/manifest.json_google
-FIREFOX_MANIFEST=${ADDON}/manifest.json_mozilla
 #Mozilla supports the id key at manifest.json 
 MOZILLA_ID=lliurex-on-fire@lliurex.net
 MOZILLA_MANIFEST_ID="\"applications\":
@@ -89,7 +89,7 @@ function generate_chromium_addon
 	rm -vfr $CHROMIUM_BUILD_DIR 2>/dev/null
 	mkdir -vp $CHROMIUM_BUILD_DIR 2>/dev/null
 	cp -vr ${BASE_DIR}"/"${ADDON}/* $CHROMIUM_BUILD_DIR 
-	cp -v ${CHROMIUM_MANIFEST} ${CHROMIUM_BUILD_DIR}
+	cp -v ${CHROMIUM_MANIFEST} ${CHROMIUM_BUILD_DIR}/manifest.json
 	cd $CHROMIUM_BUILD_DIR
 	EXTERNAL_VERSION=$(grep \"version\": ${CHROMIUM_BUILD_DIR}/manifest.json | cut -d '"' -f4)
 	#If for any reason there's a need to regenerate the pem file uncomment this lines and refresh CHROMIUM_ID value
