@@ -1,8 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Lliurex-on-Chrome",
-  "version": "0.9.6",
-  "key": "akabjpjncgokcndehhncnbgginikpgdp",
+  "version": "0.9.7",
 
   "description": "Add custom settings for LliureX",
 
@@ -21,6 +20,12 @@
     "webNavigation",
     "bookmarks"
   ],
+
+  	"chrome_url_overrides":
+	{
+		"newtab":"new_tab/index.html"
+	},
+
 
   "background": 
     {
