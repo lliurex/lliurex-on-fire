@@ -77,7 +77,7 @@ function generate_firefox_addon
 	cd $ADDON
 	web-ext build
 	#Remember to fill MOZILLA_USER and MOZILLA_KEY in passfile 
-	web-ext sign --api-key=$MOZILLA_USER --api-secret=$MOZILLA_KEY
+	web-ext sign --api-key=$MOZILLA_USER --api-secret=$MOZILLA_KEY --channel=unlisted
 	cd web-ext-artifacts
 	mv *xpi ${FIREFOX_DIR}/${MOZILLA_ID}.xpi
 	cd ${BASE_DIR}
@@ -98,7 +98,7 @@ function generate_chromium_addon
 	chromium --pack-extension=$CHROMIUM_BUILD_DIR --pack-extension-key=${BASE_DIR}/lliurex-on-fire.pem
 	mv $BUILD_DIR/*crx $CHROMIUM_DIR
 	cd $CHROMIUM_DIR
-	mkdir $(basename $CHROMIUM_BUILD_DIR)
+	mkdir $(basename $CHROMIUM_BUILD_DIR) || true
 	cd $(basename $CHROMIUM_BUILD_DIR)
 	#unzip ../lliurex-on-chrome.crx
 	#rm ../lliurex-on-chrome.crx
