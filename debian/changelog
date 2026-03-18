@@ -1,3 +1,10 @@
+lliurex-on-fire (0.9.7.4-0lliurex23) jammy; urgency=medium
+
+  * Update bookmarks
+  * newtab mechanism
+
+ -- Juanma1980 <juanma1980@gmail.com>  Wed, 18 Mar 2026 08:38:19 +0100
+
 lliurex-on-fire (0.9.6lliurex23) jammy; urgency=medium
 
   * Fix bookmarks compat FF>120
