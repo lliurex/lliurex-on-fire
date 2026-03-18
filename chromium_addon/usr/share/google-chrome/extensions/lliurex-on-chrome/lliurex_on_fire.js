@@ -6,7 +6,7 @@ var lliurex_bm_url={
 	'https://mestreacasa.gva.es/web/lliurex/forums':'Foro de LliureX',
 	'https://portal.edu.gva.es/appsedu/':'AppsEdu',
 	'https://wiki.edu.gva.es/lliurex/tiki-index.php':'Wiki de LliureX',
-	'https://portal.edu.gva.es/lliurex/va/':' Blog de LliureX',
+	'https://portal.edu.gva.es/blogs/s1/lliurex/':' Blog de LliureX',
 	'https://portal.edu.gva.es/lliurex/va/':'LliureX',
 };
 var extra_bm_url={
@@ -206,6 +206,7 @@ function findBookmarkFolderByName(name, callback) {
 //function findBookmarkFolderByName
 
 function removeBookmarkFolder(folderId) {
+	console.log('Removing '+folderId);
 	chrome.bookmarks.getChildren(folderId, function(children) {
 		 if (children.length === 0) {
 			try
@@ -281,16 +282,22 @@ self.addEventListener('activate', (event) => {
 function main()
 {
 	console.log("Processing...");
+	const proms=[];
 	for (let idx in bm_remove)
 	{
-		removeFolderByName(bm_remove[idx]);
+		proms.push(removeFolderByName(bm_remove[idx]));
 	}
 	for (let name in bm_dict)
 	{
-		removeFolderByName(name);
+		proms.push(removeFolderByName(name));
 	}
-	for (let name in bm_dict)
-		createBookmarksFolder(name);
+	(async () => {
+		console.log("wait...");
+		const res=await Promise.all(proms);
+		console.log("ready...");
+		for (let name in bm_dict)
+			createBookmarksFolder(name);
+	})();
 }
 
 var id=0;
