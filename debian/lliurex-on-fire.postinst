@@ -8,10 +8,19 @@ case $1 in
         
 		for i in /home/*
 		do
+			MOZDIR=""
 			if [ -e ${i}/.mozilla/firefox ]
 			then
-				find $i/.mozilla/firefox -name "lliurex-on-fire@lliurex.net.xpi" -exec cp /usr/lib/firefox/distribution/extensions/lliurex-on-fire@lliurex.net.xpi '{}' \; || true
-				find $i/.mozilla/firefox -name "search.json.mozlz4" -exec cp /usr/lib/firefox/search.json.mozlz4 '{}' \; || true
+				MOZDIR=${i}/.mozilla/firefox
+			elif [ -e ${i}/.config/mozilla/firefox ]
+			then
+				MOZDIR=${i}/.config/mozilla/firefox
+			fi
+
+			if [ ${#MOZDIR} -gt 0 ]
+			then
+				find $MOZDIR -name "lliurex-on-fire@lliurex.net.xpi" -exec cp /usr/lib/firefox/distribution/extensions/lliurex-on-fire@lliurex.net.xpi '{}' \; || true
+				find $MOZDIR -name "search.json.mozlz4" -exec cp /usr/lib/firefox/search.json.mozlz4 '{}' \; || true
 			fi
 		done
 
