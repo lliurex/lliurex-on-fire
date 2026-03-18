@@ -98,7 +98,7 @@ function generate_chromium_addon
 	chromium --pack-extension=$CHROMIUM_BUILD_DIR --pack-extension-key=${BASE_DIR}/lliurex-on-fire.pem
 	mv $BUILD_DIR/*crx $CHROMIUM_DIR
 	cd $CHROMIUM_DIR
-	mkdir $(basename $CHROMIUM_BUILD_DIR)
+	mkdir $(basename $CHROMIUM_BUILD_DIR) || true
 	cd $(basename $CHROMIUM_BUILD_DIR)
 	#The extension must be distributed unpacked
 	unzip ../lliurex-on-chrome.crx

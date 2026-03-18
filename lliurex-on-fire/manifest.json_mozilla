@@ -1,7 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Lliurex-on-Fire",
-  "version": "0.9.7",
+  "version": "0.9.7.4",
+  "license": "GPL-3.0-only",
 
   "description": "Add custom settings for LliureX",
 
