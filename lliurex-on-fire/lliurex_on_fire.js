@@ -3,28 +3,27 @@
  */
 
 var lliurex_bm_url={
-	'https://mestreacasa.gva.es/web/lliurex/forums':'Foro de LliureX',
-	'https://portal.edu.gva.es/appsedu/':'AppsEdu',
-	'https://wiki.edu.gva.es/lliurex/tiki-index.php':'Wiki de LliureX',
-	'https://portal.edu.gva.es/blogs/s1/lliurex/':' Blog de LliureX',
 	'https://portal.edu.gva.es/lliurex/va/':'LliureX',
+	'https://portal.edu.gva.es/blogs/s1/lliurex/':' Blog de LliureX',
+	'https://wiki.edu.gva.es/lliurex/tiki-index.php':'Wiki de LliureX',
+	'https://portal.edu.gva.es/appsedu/':'AppsEdu',
 };
 var extra_bm_url={
 	'https://portal.edu.gva.es/aules/es/inicio/':'Aules'
 };
 var gva_tools={
-	'http://www.ceice.gva.es/va/web/centros-docentes/guia-de-centros-docentes':'Guía de Centros',
-	'https://oficinavirtual.gva.es':'OVICE',
-	'https://ovidoc.edu.gva.es':'OVIDOC',
-	'https://portal.edu.gva.es/sai/':'SAI',
-	'https://portal.edu.gva.es/biblioedu/':'BiblioEdu',
-	'https://portal.edu.gva.es/portal/va/inici/':'PortalEdu',
 	'https://itaca.edu.gva.es/':'Itaca',
+	'https://portal.edu.gva.es/portal/va/inici/':'PortalEdu',
+	'https://portal.edu.gva.es/biblioedu/':'BiblioEdu',
+	'https://portal.edu.gva.es/sai/':'SAI',
+	'https://ovidoc.edu.gva.es':'OVIDOC',
+	'https://oficinavirtual.gva.es':'OVICE',
+	'http://www.ceice.gva.es/va/web/centros-docentes/guia-de-centros-docentes':'Guía de Centros',
 };
 var gva_sites={
-	'http://www.ceice.gva.es/es/web/formacion-profesorado':'CEFIREs',
-	'https://portal.edu.gva.es/itedugva/va':'ITEDU',
 	'http://www.ceice.gva.es/es':'Web CEICE',
+	'https://portal.edu.gva.es/itedugva/va':'ITEDU',
+	'http://www.ceice.gva.es/es/web/formacion-profesorado':'CEFIREs',
 };
 var bm_dict={'LliureX':lliurex_bm_url,'Aules':extra_bm_url,'Utils. GVA':gva_tools,'GVA sites':gva_sites};
 var bm_remove=['Mestre a casa'];
@@ -66,7 +65,16 @@ function resolved(record)
 function not_resolved(record)
 {
 	console.log("Not resolved");
-	console.log(record);
+	console.log(record.error);
+	err=record.error;
+	if (err=="net::ERR_CONNECTION_REFUSED")
+	{
+		updating=chrome.tabs.update(id,{
+			active:true,
+			url: "page/index.html?text="+tabUrl
+	});
+	}
+
 	return;
 }
 //function not_resolved
@@ -77,24 +85,22 @@ function loadErrorOcurred(details)
 	//Disabled. Remove "return" to enable
 //	return;
 	id=details.tabId;
-	let tabUrl=details.url;
-	if (tabUrl.startsWith("moz"))
+	if (details.url.startsWith("moz"))
 	{
 		return;
 	}
-	console.log(tabUrl);
+	tabUrl=details.url;
 	let frameId=details.frameId;
 	let domain=new URL(details.url).hostname;
 	if((typeof(chrome.dns=="object")) && (frameId==0))
 	{
-		console.log(details);
 		try
 		{
 			console.log("Domain: "+domain);
 			chrome.dns.resolve(domain,["bypass_cache"]).then(resolved);
 		}catch{
-			console.log(details.rul);
-			not_resolved(details.url);
+			console.log(details);
+			not_resolved(details);
 		};
 	}else{
 		console.log("Fetching: "+details.url);
@@ -283,10 +289,6 @@ function main()
 {
 	console.log("Processing...");
 	const proms=[];
-	for (let idx in bm_remove)
-	{
-		proms.push(removeFolderByName(bm_remove[idx]));
-	}
 	for (let name in bm_dict)
 	{
 		proms.push(removeFolderByName(name));
@@ -295,12 +297,16 @@ function main()
 		console.log("wait...");
 		const res=await Promise.all(proms);
 		console.log("ready...");
-		for (let name in bm_dict)
+		const bm_folders = Object.keys(bm_dict);
+		for (let i = bm_folders.length - 1; i >= 0; i--) {
+  			var name = bm_folders[i];
 			createBookmarksFolder(name);
+		}
 	})();
 }
 
 var id=0;
 var name="";
+var tabUrl="";
 console.log("Lliurex-on-fire: Init");
 main();
