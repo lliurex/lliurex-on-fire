@@ -1,3 +1,10 @@
+lliurex-on-fire (0.9.8.0) noble; urgency=medium
+
+  * Rearrange bookmarks
+  * Fix lliurex guard integration
+
+ -- Juanma1980 <juanma1980@gmail.com>  Thu, 26 Nov 2026 13:51:08 +0100
+
 lliurex-on-fire (0.9.7.4+1llx25) noble; urgency=medium
 
   * Update bookmarks
