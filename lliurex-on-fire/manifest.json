@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Lliurex-on-Chrome",
+  "version": "0.9.8",
+
+  "description": "Add custom settings for LliureX",
+
+  "icons": {
+    "16": "icons/lliurex_on_fire16.png",
+    "48": "icons/lliurex_on_fire48.png",
+    "64": "icons/lliurex_on_fire64.png",
+    "128": "icons/lliurex_on_fire128.png"
+  },
+
+  "permissions": [
+    "history",
+    "tabs",
+    "dns",
+    "search",
+    "webNavigation",
+    "bookmarks"
+  ],
+
+  	"chrome_url_overrides":
+	{
+		"newtab":"new_tab/index.html"
+	},
+
+
+  "background": 
+    {
+      "service_worker": "lliurex_on_fire.js"
+    }
+}

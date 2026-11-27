@@ -7,7 +7,6 @@ BASE_DIR=${PWD}
 ADDON=lliurex-on-fire
 CHROMIUM_ADDON=lliurex-on-chrome
 BUILD_DIR=${BASE_DIR}"/build"
-MANIFEST=${ADDON}/manifest.json
 FIREFOX_MANIFEST=${ADDON}/manifest.json_mozilla
 FIREFOX_DIR=${BASE_DIR}/firefox_addon/usr/lib/firefox/distribution/extensions
 #If the .pem file changes CHROMIUM_ID will change and must be updated "manually"
@@ -71,6 +70,7 @@ function generate_firefox_addon
 	mkdir -p $FIREFOX_DIR 2>/dev/null
 	cp -R ${BASE_DIR}"/"${ADDON} $BUILD_DIR
 	cd $BUILD_DIR
+	MANIFEST=${ADDON}/manifest.json
 	cp -v $FIREFOX_MANIFEST $MANIFEST
 #	sed -i -e '$s/}//' -e 's/[[:space:]]}$/},/' manifest.json
 #	echo "$MOZILLA_MANIFEST_ID" >> manifest.json
@@ -85,12 +85,12 @@ function generate_firefox_addon
 
 function generate_chromium_addon
 {
-	CHROMIUM_ADDON_MANIFEST=${CHROMIUM_ADDON}/manifest.json
 	rm -vfr $CHROMIUM_BUILD_DIR 2>/dev/null
 	mkdir -vp $CHROMIUM_BUILD_DIR 2>/dev/null
 	cp -vr ${BASE_DIR}"/"${ADDON}/* $CHROMIUM_BUILD_DIR 
-	cp -v ${CHROMIUM_MANIFEST} ${CHROMIUM_BUILD_DIR}/manifest.json
 	cd $CHROMIUM_BUILD_DIR
+	MANIFEST=${CHROMIUM_BUILD_DIR}/manifest.json
+	cp -v ../${CHROMIUM_MANIFEST} ${MANIFEST}
 	EXTERNAL_VERSION=$(grep \"version\": ${CHROMIUM_BUILD_DIR}/manifest.json | cut -d '"' -f4)
 	#If for any reason there's a need to regenerate the pem file uncomment this lines and refresh CHROMIUM_ID value
 #	chromium --pack-extension=${BUILD_DIR}"/"$ADDON
@@ -98,7 +98,7 @@ function generate_chromium_addon
 	chromium --pack-extension=$CHROMIUM_BUILD_DIR --pack-extension-key=${BASE_DIR}/lliurex-on-fire.pem
 	mv $BUILD_DIR/*crx $CHROMIUM_DIR
 	cd $CHROMIUM_DIR
-	mkdir $(basename $CHROMIUM_BUILD_DIR) || true
+	mkdir $(basename $CHROMIUM_BUILD_DIR) 2>/dev/null || true
 	cd $(basename $CHROMIUM_BUILD_DIR)
 	#The extension must be distributed unpacked
 	unzip ../lliurex-on-chrome.crx
@@ -108,7 +108,7 @@ function generate_chromium_addon
 	#sed -i "s/\"external_version.*/\"external_version\":\"$EXTERNAL_VERSION\"/" ${CHROMIUM_ID}.json
 	#cp ${CHROMIUM_ID}.json $CHROME_DIR
 	## <--
-	cp -r $(basename $CHROMIUM_BUILD_DIR) $CHROME_DIR
+	cp -vr $(basename $CHROMIUM_BUILD_DIR) $CHROME_DIR
 	cd ${BASE_DIR}
 }
 
