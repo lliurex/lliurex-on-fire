@@ -100,8 +100,8 @@ function generate_chromium_addon
 	cd $CHROMIUM_DIR
 	mkdir $(basename $CHROMIUM_BUILD_DIR) 2>/dev/null || true
 	cd $(basename $CHROMIUM_BUILD_DIR)
-	#unzip ../lliurex-on-chrome.crx
-	#rm ../lliurex-on-chrome.crx
+	unzip ../lliurex-on-chrome.crx
+	rm ../lliurex-on-chrome.crx
 	cd ..
 	#<-- Not working anymore
 	#sed -i "s/\"external_version.*/\"external_version\":\"$EXTERNAL_VERSION\"/" ${CHROMIUM_ID}.json
